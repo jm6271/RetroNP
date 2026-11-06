@@ -54,3 +54,7 @@ Use **File > Open** or **Save As** to enter a full path or a path relative to th
 | Exit | Alt+F4 |
 
 Text files up to 16 MB are supported. Undo retains up to 200 snapshots. This intentionally small clone does not implement printing, font selection, rich text, or an accessibility provider for its custom controls.
+
+## Code organization
+
+The document model, file service, input handling, and GDI presentation are separated into focused source files. See [the architecture guide](docs/architecture.md) for the source map, state conventions, and testing workflow. C++ formatting follows `.clang-format`.
