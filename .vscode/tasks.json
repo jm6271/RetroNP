@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "RetroNP: Build Debug",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build-msvc.ps1"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$msCompile"],
+            "group": { "kind": "build", "isDefault": true }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": "RetroNP: Build and Debug",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/msvc-debug/RetroNP.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "console": "internalConsole",
+        "preLaunchTask": "RetroNP: Build Debug"
+    }
+    ]
+}
