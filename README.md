@@ -26,6 +26,16 @@ ctest --test-dir build/cmake -C Release --output-on-failure
 
 For an MSVC Release build, run `.\build-msvc.ps1 -Release`. This builds the app and runs the tests in `build/msvc-release`; the executable is `build/msvc-release/RetroNP.exe`. Omitting `-Release` builds Debug in `build/msvc-debug`. The Visual Studio prerequisites are listed below.
 
+Visual Studio can also use the `x64-Debug` and `x64-Release` presets in `CMakePresets.json`. To use them from the command line, run these commands from an x64 Visual Studio developer shell with CMake 3.20+ and Ninja on PATH:
+
+```powershell
+cmake --preset x64-Debug
+cmake --build --preset x64-Debug
+ctest --preset x64-Debug
+```
+
+Replace `x64-Debug` with `x64-Release` in all three commands for Release. Each preset builds `out/build/<preset>/RetroNP.exe` and sets the install prefix to `out/install/<preset>`.
+
 Pass a file path on the command line, or use `RetroNP.exe --demo` to display the C++ example from the reference.
 
 ### Debug in VS Code

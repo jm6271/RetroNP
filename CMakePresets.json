@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "x64-Debug",
+      "displayName": "MSVC x64 Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+      }
+    },
+    {
+      "name": "x64-Release",
+      "displayName": "MSVC x64 Release",
+      "inherits": "x64-Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64-Debug",
+      "configurePreset": "x64-Debug"
+    },
+    {
+      "name": "x64-Release",
+      "configurePreset": "x64-Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "x64-Release",
+      "configurePreset": "x64-Release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "x64-Debug",
+      "configurePreset": "x64-Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
