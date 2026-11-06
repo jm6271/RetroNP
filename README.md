@@ -24,6 +24,8 @@ cmake --build build/cmake --config Release
 ctest --test-dir build/cmake -C Release --output-on-failure
 ```
 
+For an MSVC Release build, run `.\build-msvc.ps1 -Release`. This builds the app and runs the tests in `build/msvc-release`; the executable is `build/msvc-release/RetroNP.exe`. Omitting `-Release` builds Debug in `build/msvc-debug`. The Visual Studio prerequisites are listed below.
+
 Pass a file path on the command line, or use `RetroNP.exe --demo` to display the C++ example from the reference.
 
 ### Debug in VS Code

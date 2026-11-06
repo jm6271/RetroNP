@@ -1,4 +1,6 @@
+param([switch]$Release)
 $ErrorActionPreference = 'Stop'
+$configuration = if ($Release) { 'Release' } else { 'Debug' }
 
 # Initialize MSVC even when VS Code was opened outside a developer shell.
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio/Installer/vswhere.exe'
@@ -12,9 +14,9 @@ $cmakeTools = Join-Path $vsPath 'Common7/IDE/CommonExtensions/Microsoft/CMake'
 $cmake = Join-Path $cmakeTools 'CMake/bin/cmake.exe'
 $ctest = Join-Path $cmakeTools 'CMake/bin/ctest.exe'
 $ninja = Join-Path $cmakeTools 'Ninja/ninja.exe'
-$buildDir = Join-Path $PSScriptRoot 'build/msvc-debug'
+$buildDir = Join-Path $PSScriptRoot "build/msvc-$($configuration.ToLowerInvariant())"
 
-& $cmake -S $PSScriptRoot -B $buildDir -G Ninja "-DCMAKE_MAKE_PROGRAM=$ninja" '-DCMAKE_CXX_COMPILER=cl.exe' '-DCMAKE_BUILD_TYPE=Debug'
+& $cmake -S $PSScriptRoot -B $buildDir -G Ninja "-DCMAKE_MAKE_PROGRAM=$ninja" '-DCMAKE_CXX_COMPILER=cl.exe' "-DCMAKE_BUILD_TYPE=$configuration"
 if ($LASTEXITCODE -ne 0) { throw 'MSVC CMake configuration failed.' }
 & $cmake --build $buildDir
 if ($LASTEXITCODE -ne 0) { throw 'MSVC build failed.' }
